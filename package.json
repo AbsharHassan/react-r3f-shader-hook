@@ -1,0 +1,18 @@
+{
+  "name": "react-r3f-shader-hook",
+  "version": "1.0.0",
+  "description": "A react hook that efficiently applies a shader to the scene without the need for expensive post-processing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@react-three/fiber": "^8.15.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.159.0"
+  }
+}
