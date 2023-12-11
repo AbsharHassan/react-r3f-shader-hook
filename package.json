@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "A react hook that efficiently applies a shader to the scene without the need for expensive post-processing",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
