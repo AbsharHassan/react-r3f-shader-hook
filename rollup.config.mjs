@@ -23,15 +23,11 @@ export default [
       },
     ],
     plugins: [
-      // NEW
-      // peerDepsExternal(),
-
+      peerDepsExternal(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
-
-      // NEW
-      // terser(),
+      terser(),
     ],
   },
   {
