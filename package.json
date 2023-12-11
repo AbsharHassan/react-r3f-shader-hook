@@ -8,7 +8,9 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "scripts": {},
+  "scripts": {
+    "rollup": "rollup -c"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
