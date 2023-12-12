@@ -5,8 +5,6 @@ import MovingSpot from './MovingSpot'
 const Scene = () => {
   return (
     <>
-      <OrbitControls />
-
       <MovingSpot
         color="#0c8cbf"
         position={[3, 3, 2]}
