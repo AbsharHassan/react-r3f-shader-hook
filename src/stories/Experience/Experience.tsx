@@ -4,7 +4,7 @@ import { Box, OrbitControls } from '@react-three/drei'
 
 type Props = {}
 
-const Scene = (props: Props) => {
+const Experience = (props: Props) => {
   return (
     <Canvas
       shadows
@@ -36,4 +36,4 @@ const Scene = (props: Props) => {
   )
 }
 
-export default Scene
+export default Experience

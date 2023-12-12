@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import Scene from './Scene'
+import Experience from './Experience/Experience'
 
-const meta: Meta<typeof Scene> = {
-  component: Scene,
-  title: 'Scene',
+const meta: Meta<typeof Experience> = {
+  component: Experience,
+  title: 'Experience',
 }
 
 export default meta
