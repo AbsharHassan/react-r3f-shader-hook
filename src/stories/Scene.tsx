@@ -1,7 +1,9 @@
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
 
-const Scene = () => {
+type Props = {}
+
+const Scene = (props: Props) => {
   return (
     <Canvas style={{ width: '100vw', height: '100vh' }}>
       <mesh>
