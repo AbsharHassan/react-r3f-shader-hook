@@ -1,16 +1,13 @@
 import React from 'react'
-import { Box, OrbitControls, useDepthBuffer } from '@react-three/drei'
+import { Box, OrbitControls } from '@react-three/drei'
 import MovingSpot from './MovingSpot'
 
 const Scene = () => {
-  const depthBuffer = useDepthBuffer({ frames: 1 })
-
   return (
     <>
       <OrbitControls />
 
       <MovingSpot
-        depthBuffer={depthBuffer}
         color="#0c8cbf"
         position={[3, 3, 2]}
       />
