@@ -8,7 +8,7 @@ const MovingSpot = ({ ...props }: MovingSpotProps) => {
     <SpotLight
       castShadow
       penumbra={1}
-      distance={9}
+      distance={10}
       angle={0.35}
       attenuation={5}
       anglePower={4}
