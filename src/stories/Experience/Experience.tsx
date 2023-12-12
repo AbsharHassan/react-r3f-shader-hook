@@ -11,7 +11,10 @@ const Experience = () => {
       camera={{ position: [-2, 2, 6], fov: 50, near: 1, far: 20 }}
       style={{ width: '100%', height: '100vh', backgroundColor: 'black' }}
     >
-      <OrbitControls />
+      <OrbitControls
+        minPolarAngle={0}
+        maxPolarAngle={Math.PI / 2}
+      />
       <ambientLight intensity={0.015} />
 
       <Scene />
