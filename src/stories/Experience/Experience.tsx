@@ -8,7 +8,7 @@ const Experience = () => {
     <Canvas
       shadows
       dpr={[1, 2]}
-      camera={{ position: [-2, 2, 6], fov: 50, near: 1, far: 20 }}
+      camera={{ position: [-2, 2, 6], fov: 35, near: 1, far: 20 }}
       style={{ width: '100%', height: '100vh', backgroundColor: 'black' }}
     >
       <OrbitControls
