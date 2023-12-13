@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, OrbitControls } from '@react-three/drei'
 import MovingSpot from './MovingSpot'
 import { useShaderPass } from '../../hooks'
+import { useThree } from '@react-three/fiber'
+import { RawShaderMaterial, Vector2 } from 'three'
 
 const Scene = () => {
+  const { gl, scene } = useThree()
+
   const vertexShader = `precision highp float;
   attribute vec2 position;
   void main() {
@@ -29,7 +33,6 @@ const Scene = () => {
   const effectMaterial = useShaderPass({
     vertexShader,
     fragmentShader,
-    uniforms,
   })
 
   return (
