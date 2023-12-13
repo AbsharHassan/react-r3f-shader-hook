@@ -13,11 +13,16 @@ import {
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 
+interface RequiredShaderMaterialParameters extends ShaderMaterialParameters {
+  vertexShader: string
+  fragmentShader: string
+}
+
 const useShaderPass = ({
   vertexShader,
   fragmentShader,
   uniforms,
-}: ShaderMaterialParameters): RawShaderMaterial => {
+}: RequiredShaderMaterialParameters): RawShaderMaterial => {
   const { gl, scene, camera } = useThree()
 
   //TODO: name this more appropriately
