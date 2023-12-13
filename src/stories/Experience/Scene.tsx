@@ -8,7 +8,8 @@ import { RawShaderMaterial, Vector2 } from 'three'
 const Scene = () => {
   const { gl, scene } = useThree()
 
-  const vertexShader = `precision highp float;
+  const vertexShader = `
+  precision highp float;
   attribute vec2 position;
   void main() {
     // Look ma! no projection matrix multiplication,
@@ -16,7 +17,8 @@ const Scene = () => {
     gl_Position = vec4(position, 1.0, 1.0);
   }`
 
-  const fragmentShader = `precision highp float;
+  const fragmentShader = `
+  precision highp float;
   uniform sampler2D uScene;
   uniform vec2 uResolution;
   void main() {
