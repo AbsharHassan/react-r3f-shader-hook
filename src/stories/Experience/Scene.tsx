@@ -24,7 +24,13 @@ const Scene = () => {
     gl_FragColor = vec4(color, 1.0);
   }`
 
-  const effectMaterial = useShaderPass({})
+  const uniforms = {}
+
+  const effectMaterial = useShaderPass({
+    vertexShader,
+    fragmentShader,
+    uniforms,
+  })
 
   return (
     <>
