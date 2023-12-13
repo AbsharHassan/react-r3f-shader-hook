@@ -10,13 +10,16 @@ import {
   RawShaderMaterial,
   Mesh,
   IUniform,
+  ShaderMaterialParameters,
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 
-const useShaderPass = (
-  vertexShader: string,
-  fragmentShader: string,
-  uniforms: { [uniform: string]: IUniform }
-): void => {
-  uniforms
+const useShaderPass = ({
+  vertexShader,
+  fragmentShader,
+  uniforms,
+}: ShaderMaterialParameters): RawShaderMaterial => {
+  return new RawShaderMaterial({ vertexShader, fragmentShader, uniforms })
 }
+
+export default useShaderPass

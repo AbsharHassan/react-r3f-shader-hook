@@ -1,8 +1,11 @@
 import React from 'react'
 import { Box, OrbitControls } from '@react-three/drei'
 import MovingSpot from './MovingSpot'
+import { useShaderPass } from '../../hooks'
 
 const Scene = () => {
+  // const hello = useShaderPass({vertexShader: 2, fragmentShader: false, uniforms: false})
+
   return (
     <>
       <MovingSpot
