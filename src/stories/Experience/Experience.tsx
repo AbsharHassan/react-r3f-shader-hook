@@ -1,7 +1,6 @@
 import React from 'react'
-import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { Box, OrbitControls } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import Scene from './Scene'
 
 const Experience = () => {
