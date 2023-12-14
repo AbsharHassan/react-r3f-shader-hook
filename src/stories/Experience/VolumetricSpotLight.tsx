@@ -1,9 +1,9 @@
 import React from 'react'
 import { SpotLight } from '@react-three/drei'
 
-type MovingSpotProps = React.ComponentPropsWithoutRef<typeof SpotLight>
+type VolumetricSpotLightProps = React.ComponentPropsWithoutRef<typeof SpotLight>
 
-const MovingSpot = ({ ...props }: MovingSpotProps) => {
+const VolumetricSpotLight = ({ ...props }: VolumetricSpotLightProps) => {
   return (
     <SpotLight
       castShadow
@@ -18,4 +18,4 @@ const MovingSpot = ({ ...props }: MovingSpotProps) => {
   )
 }
 
-export default MovingSpot
+export default VolumetricSpotLight
