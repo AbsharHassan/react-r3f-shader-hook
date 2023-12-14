@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Box, OrbitControls } from '@react-three/drei'
-import MovingSpot from './MovingSpot'
+import VolumetricSpotLight from './VolumetricSpotLight'
 import { useShaderPass } from '../../hooks'
 import { useThree } from '@react-three/fiber'
 import { RawShaderMaterial, Vector2 } from 'three'
@@ -47,16 +47,10 @@ const Scene = () => {
 
   return (
     <>
-      <MovingSpot
+      <VolumetricSpotLight
         color="#0c8cbf"
         position={[3, 3, 2]}
       />
-
-      {/* <pointLight
-        intensity={100}
-        color="#0c8cbf"
-        position={[3, 3, 2]}
-      /> */}
 
       <Box
         position={[0, 0, 0.2]}
