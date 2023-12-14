@@ -10,6 +10,10 @@ import {
   RawShaderMaterial,
   Mesh,
   ShaderMaterialParameters,
+  LinearFilter,
+  LinearSRGBColorSpace,
+  ACESFilmicToneMapping,
+  FloatType,
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 
@@ -23,7 +27,9 @@ const useShaderPass = ({
   fragmentShader,
   uniforms,
 }: RequiredShaderMaterialParameters): RawShaderMaterial => {
-  const { gl, scene, camera } = useThree()
+  const { gl, scene, camera, viewport } = useThree()
+
+  console.log(viewport)
 
   //TODO: name this more appropriately
   const extraScene = useMemo<Scene>(() => new Scene(), [])
@@ -43,8 +49,11 @@ const useShaderPass = ({
     () =>
       new WebGLRenderTarget(resolution.x, resolution.y, {
         format: RGBAFormat,
+        minFilter: LinearFilter,
+        magFilter: LinearFilter,
         stencilBuffer: false,
         depthBuffer: true,
+        type: FloatType,
       }),
     []
   )

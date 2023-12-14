@@ -4,6 +4,7 @@ import MovingSpot from './MovingSpot'
 import { useShaderPass } from '../../hooks'
 import { useThree } from '@react-three/fiber'
 import { RawShaderMaterial, Vector2 } from 'three'
+import * as THREE from 'three'
 
 const Scene = () => {
   const { gl, scene } = useThree()
@@ -26,7 +27,9 @@ const Scene = () => {
     vec3 color = vec3(uv, 1.0);
     color = texture2D(uScene, uv).rgb;
     // Do your cool postprocessing here
-    color.r += sin(uv.x * 50.0);
+    // color.r += sin(uv.x * 50.0);
+
+    // color = pow(color, vec3(1.0/1.6));
     gl_FragColor = vec4(color, 1.0);
   }`
 
@@ -37,12 +40,23 @@ const Scene = () => {
     fragmentShader,
   })
 
+  useEffect(() => {
+    // console.log((gl.outputEncoding = THREE.sRGBEncoding))
+    // gl.outputColorSpace = THREE.LinearSRGBColorSpace
+  }, [gl])
+
   return (
     <>
       <MovingSpot
         color="#0c8cbf"
         position={[3, 3, 2]}
       />
+
+      {/* <pointLight
+        intensity={100}
+        color="#0c8cbf"
+        position={[3, 3, 2]}
+      /> */}
 
       <Box
         position={[0, 0, 0.2]}

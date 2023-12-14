@@ -1,4 +1,5 @@
 import React from 'react'
+import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import { Box, OrbitControls } from '@react-three/drei'
 import Scene from './Scene'
@@ -6,6 +7,13 @@ import Scene from './Scene'
 const Experience = () => {
   return (
     <Canvas
+      gl={
+        {
+          // antialias: false,
+          // outputColorSpace: THREE.LinearSRGBColorSpace,
+          // toneMapping: 5,
+        }
+      }
       shadows
       dpr={[1, 2]}
       camera={{ position: [-2, 2, 6], fov: 35, near: 1, far: 20 }}
