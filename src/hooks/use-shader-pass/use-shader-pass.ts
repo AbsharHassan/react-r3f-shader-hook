@@ -133,7 +133,7 @@ const useShaderPass = ({
     }
   }, [])
 
-  useFrame((state) => {
+  useFrame(() => {
     gl.setRenderTarget(target)
     gl.render(scene, camera)
     gl.setRenderTarget(null)
