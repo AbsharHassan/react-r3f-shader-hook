@@ -11,8 +11,6 @@ import {
   Mesh,
   ShaderMaterialParameters,
   LinearFilter,
-  LinearSRGBColorSpace,
-  ACESFilmicToneMapping,
   FloatType,
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
@@ -23,8 +21,23 @@ interface RequiredShaderMaterialParameters extends ShaderMaterialParameters {
 }
 
 const useShaderPass = ({
-  vertexShader,
-  fragmentShader,
+  vertexShader = `
+    precision highp float;
+    attribute vec2 position;
+    void main() {
+      gl_Position = vec4(position, 1.0, 1.0);
+    }
+  `,
+  fragmentShader = `
+    precision highp float;
+    uniform sampler2D uScene;
+    uniform vec2 uResolution;
+    void main() {
+      vec2 uv = gl_FragCoord.xy / uResolution.xy;
+      vec4 color = texture2D(uScene, uv).rgba;
+      gl_FragColor = color;
+    }
+  `,
   uniforms,
 }: RequiredShaderMaterialParameters): RawShaderMaterial => {
   const { gl, scene, camera, viewport } = useThree()
