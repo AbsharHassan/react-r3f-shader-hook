@@ -127,7 +127,7 @@ const useShaderPass = ({
     window.addEventListener('resize', updateRenderTargetSize)
 
     return () => {
-      material.dispose()
+      // material.dispose()
       window.removeEventListener('resize', updateRenderTargetSize)
       // other clean ups
     }
