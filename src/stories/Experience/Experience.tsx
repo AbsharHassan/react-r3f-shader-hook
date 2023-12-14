@@ -7,13 +7,6 @@ import Scene from './Scene'
 const Experience = () => {
   return (
     <Canvas
-      gl={
-        {
-          // antialias: false,
-          // outputColorSpace: THREE.LinearSRGBColorSpace,
-          // toneMapping: 5,
-        }
-      }
       shadows
       dpr={[1, 2]}
       camera={{ position: [-2, 2, 6], fov: 35, near: 1, far: 20 }}
@@ -24,7 +17,6 @@ const Experience = () => {
         maxPolarAngle={Math.PI / 2}
       />
       <ambientLight intensity={0.015} />
-
       <Scene />
     </Canvas>
   )

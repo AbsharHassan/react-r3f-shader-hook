@@ -35,10 +35,7 @@ const Scene = () => {
 
   const uniforms = {}
 
-  const effectMaterial = useShaderPass({
-    vertexShader,
-    fragmentShader,
-  })
+  const effectMaterial = useShaderPass({ vertexShader, fragmentShader })
 
   useEffect(() => {
     // console.log((gl.outputEncoding = THREE.sRGBEncoding))
