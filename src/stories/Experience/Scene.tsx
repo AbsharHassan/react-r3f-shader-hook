@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import { Box, OrbitControls } from '@react-three/drei'
+import { Box } from '@react-three/drei'
 import VolumetricSpotLight from './VolumetricSpotLight'
 import { useShaderPass } from '../../hooks'
 import { useThree } from '@react-three/fiber'
-import { RawShaderMaterial, Vector2 } from 'three'
-import * as THREE from 'three'
 
 const Scene = () => {
   const { gl, scene } = useThree()
