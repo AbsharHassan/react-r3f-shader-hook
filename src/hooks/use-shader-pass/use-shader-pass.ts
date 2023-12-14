@@ -71,20 +71,19 @@ const useShaderPass = ({
     []
   )
 
-  const material = useMemo<RawShaderMaterial>(
-    () =>
-      new RawShaderMaterial({
-        vertexShader,
-        fragmentShader,
-        uniforms: {
-          uScene: { value: target.texture },
-          uResolution: { value: resolution },
-          ...uniforms,
-        },
-      }),
-    //Test to see if it works without these items in deps array
-    [vertexShader, fragmentShader, uniforms]
-  )
+  const material = useMemo<RawShaderMaterial>(() => {
+    console.log('change')
+
+    return new RawShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uScene: { value: target.texture },
+        uResolution: { value: resolution },
+        ...uniforms,
+      },
+    })
+  }, [vertexShader, fragmentShader, uniforms])
 
   const updateRenderTargetSize = (): void => {
     // Get the new size of the renderer's drawing buffer
@@ -103,6 +102,7 @@ const useShaderPass = ({
     dummyCamera.updateProjectionMatrix()
   }
 
+  // Main useEffect
   useEffect(() => {
     const geometry = new BufferGeometry()
 
@@ -121,19 +121,19 @@ const useShaderPass = ({
     triangle.frustumCulled = false
 
     extraScene.add(triangle)
-  }, [gl])
+  }, [gl, material])
 
   useEffect(() => {
     window.addEventListener('resize', updateRenderTargetSize)
 
     return () => {
-      // material.dispose()
+      material.dispose()
       window.removeEventListener('resize', updateRenderTargetSize)
       // other clean ups
     }
   }, [])
 
-  useFrame(() => {
+  useFrame((state) => {
     gl.setRenderTarget(target)
     gl.render(scene, camera)
     gl.setRenderTarget(null)
