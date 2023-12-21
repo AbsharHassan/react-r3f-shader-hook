@@ -14,11 +14,7 @@ import {
   FloatType,
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-
-interface RequiredShaderMaterialParameters extends ShaderMaterialParameters {
-  vertexShader: string
-  fragmentShader: string
-}
+import { RequiredShaderMaterialParameters } from './use-shader-pass.types'
 
 const useShaderPass = ({
   vertexShader = `
