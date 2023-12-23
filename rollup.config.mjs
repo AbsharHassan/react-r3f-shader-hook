@@ -9,7 +9,7 @@ import packageJson from './package.json' assert { type: 'json' }
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/hooks/index.ts',
     output: [
       {
         file: packageJson.main,
@@ -26,7 +26,15 @@ export default [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+        exclude: [
+          '**/__tests__/**',
+          '**/*.test.ts',
+          '**/stories/**',
+          '**/*stories.ts',
+        ],
+      }),
       terser(),
     ],
   },
