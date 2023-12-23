@@ -9,7 +9,6 @@ import {
   RGBAFormat,
   RawShaderMaterial,
   Mesh,
-  ShaderMaterialParameters,
   LinearFilter,
   FloatType,
 } from 'three'
