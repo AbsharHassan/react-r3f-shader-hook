@@ -1,6 +1,7 @@
 import React from 'react'
-import { RequiredShaderMaterialParameters } from '../../hooks/use-shader-pass/use-shader-pass.types'
-import { useShaderPass } from '../../hooks'
+import { RequiredShaderMaterialParameters } from '../hooks/use-shader-pass/use-shader-pass.types'
+import { useShaderPass } from '../hooks'
+import { Box } from '@react-three/drei'
 
 type Props = {}
 
@@ -28,9 +29,14 @@ const DummyComponentForHookTest = (props: Props) => {
     fragmentShader,
   }
 
-  const shaderPass = useShaderPass(initialProps)
+  //   const shaderPass = useShaderPass(initialProps)
 
-  return <mesh />
+  return (
+    <mesh>
+      <sphereGeometry />
+      <meshBasicMaterial />
+    </mesh>
+  )
 }
 
 export default DummyComponentForHookTest
