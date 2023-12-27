@@ -37,8 +37,6 @@ const useShaderPass = ({
 }: RequiredShaderMaterialParameters): RawShaderMaterial => {
   const { gl, scene, camera, viewport } = useThree()
 
-  console.log(viewport)
-
   //TODO: name this more appropriately
   const extraScene = useMemo<Scene>(() => new Scene(), [])
 
@@ -67,8 +65,6 @@ const useShaderPass = ({
   )
 
   const material = useMemo<RawShaderMaterial>(() => {
-    console.log('change')
-
     return new RawShaderMaterial({
       vertexShader,
       fragmentShader,
@@ -101,10 +97,14 @@ const useShaderPass = ({
   useEffect(() => {
     const geometry = new BufferGeometry()
 
-    // Triangle expressed in clip space coordinates
-    const vertices = new Float32Array([-1.0, -1.0, 3.0, -1.0, -1.0, 3.0])
+    // Flat triangle expressed in clip space coordinates
+    const vertices = new Float32Array([
+      -1.0, -1.0, 0.0, 3.0, -1.0, 0.0, -1.0, 3.0, 0.0,
+    ])
 
-    geometry.setAttribute('position', new BufferAttribute(vertices, 2, false))
+    geometry.setAttribute('position', new BufferAttribute(vertices, 3, false))
+
+    geometry.boundingSphere?.center.setZ(0)
 
     gl.getDrawingBufferSize(resolution)
 
@@ -116,6 +116,12 @@ const useShaderPass = ({
     triangle.frustumCulled = false
 
     extraScene.add(triangle)
+
+    return () => {
+      extraScene.clear()
+      geometry.dispose()
+      material.dispose()
+    }
   }, [gl, material])
 
   useEffect(() => {
