@@ -1,11 +1,13 @@
+import React from 'react'
 import { renderHook } from '@testing-library/react'
 import ReactThreeTestRenderer from '@react-three/test-renderer'
 import { useShaderPass } from '../hooks'
 import DummyComponentForHookTest from './helpers/DummyComponentForHookTest'
 import { RequiredShaderMaterialParameters } from '../hooks/use-shader-pass/use-shader-pass.types'
+import { Canvas } from '@react-three/fiber'
 
-describe('Implementing', async () => {
-  it.skip('should successfully call the hook in component', () => {
+describe('Implementing', () => {
+  it.skip('should successfully call the hook in component', async () => {
     const vertexShader = `
         precision highp float;
         attribute vec2 position;
@@ -29,10 +31,10 @@ describe('Implementing', async () => {
       fragmentShader,
     }
 
-    const Component = <DummyComponentForHookTest />
-
     const renderer = await ReactThreeTestRenderer.create(
-      <DummyComponentForHookTest />
+      <Canvas>
+        <DummyComponentForHookTest />
+      </Canvas>
     )
 
     expect(true).toBeTruthy()
