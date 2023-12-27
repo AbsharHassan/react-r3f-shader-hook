@@ -1,9 +1,11 @@
 import { renderHook } from '@testing-library/react'
+import ReactThreeTestRenderer from '@react-three/test-renderer'
 import { useShaderPass } from '../hooks'
+import DummyComponentForHookTest from './helpers/DummyComponentForHookTest'
 import { RequiredShaderMaterialParameters } from '../hooks/use-shader-pass/use-shader-pass.types'
 
-describe('testing hook', () => {
-  it.skip('should do nothing rn', () => {
+describe('Implementing', async () => {
+  it.skip('should successfully call the hook in component', () => {
     const vertexShader = `
         precision highp float;
         attribute vec2 position;
@@ -27,9 +29,11 @@ describe('testing hook', () => {
       fragmentShader,
     }
 
-    const { result } = renderHook(useShaderPass, { initialProps })
+    const Component = <DummyComponentForHookTest />
 
-    console.log(result.current)
+    const renderer = await ReactThreeTestRenderer.create(
+      <DummyComponentForHookTest />
+    )
 
     expect(true).toBeTruthy()
   })
