@@ -28,6 +28,8 @@ const DummyComponentForHookTest = (props: Props) => {
     fragmentShader,
   }
 
+  const shaderPass = useShaderPass(initialProps)
+
   return <mesh />
 }
 
