@@ -24,6 +24,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@react-three/drei": "^9.92.1",
     "@react-three/fiber": "^8.15.12",
+    "@react-three/test-renderer": "^8.2.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
