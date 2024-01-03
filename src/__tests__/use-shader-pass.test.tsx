@@ -26,6 +26,13 @@ const fragmentShader = `
   }
 `
 
+const hasKey = <K extends string>(
+  obj: object,
+  key: K
+): obj is { [P in K]: unknown } => {
+  return key in obj
+}
+
 describe('Implementing', () => {
   test("hook's return type should be RawShaderMaterial", async () => {
     let material: any
@@ -100,9 +107,7 @@ describe('Implementing', () => {
 
     await create(<Component />)
 
-    const keyToCheck = 'uScene'
-
-    expect(keyToCheck in material.uniforms).toBeTruthy()
+    expect(hasKey(material.uniforms, 'uScene')).toBeTruthy()
   })
 
   test('material should have the necessary uResolution uniform', async () => {
@@ -121,9 +126,7 @@ describe('Implementing', () => {
 
     await create(<Component />)
 
-    const keyToCheck = 'uResolution'
-
-    expect(keyToCheck in material.uniforms).toBeTruthy()
+    expect(hasKey(material.uniforms, 'uResolution')).toBeTruthy()
   })
 
   test('material should ONLY have the above uniforms IF none are provided', async () => {
