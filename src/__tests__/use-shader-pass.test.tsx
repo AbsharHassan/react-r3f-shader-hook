@@ -45,4 +45,42 @@ describe('Implementing', () => {
 
     expect(material instanceof RawShaderMaterial).toBeTruthy()
   })
+
+  test('material should have the provided VERTEX shader', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    expect(material.vertexShader).toBe(vertexShader)
+  })
+
+  test.only('material should have the provided FRAGMENT shader', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    expect(material.fragmentShader).toBe(fragmentShader)
+  })
 })
