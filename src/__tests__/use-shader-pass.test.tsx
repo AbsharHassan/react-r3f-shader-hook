@@ -1,16 +1,48 @@
 import React from 'react'
-import ReactThreeTestRenderer from '@react-three/test-renderer'
-import { Canvas } from '@react-three/fiber'
-import DummyComponentForHookTest from '../helpers/DummyComponentForHookTest'
+import { create } from '@react-three/test-renderer'
+import { useShaderPass } from '../hooks'
+import { RawShaderMaterial } from 'three'
+
+const vertexShader = `
+  precision highp float;
+
+  attribute vec2 position;
+
+  void main() {
+  gl_Position = vec4(position, 1.0, 1.0);
+  }
+`
+
+const fragmentShader = `
+  precision highp float;
+
+  uniform sampler2D uScene;
+  uniform vec2 uResolution;
+
+  void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution.xy;
+  vec4 color = texture2D(uScene, uv).rgba;
+  gl_FragColor = color;
+  }
+`
 
 describe('Implementing', () => {
-  it('should successfully call the hook in component', async () => {
-    const renderer = await ReactThreeTestRenderer.create(
-      <DummyComponentForHookTest />
-    )
+  it("should make sure the hook's return type is RawShaderMaterial", async () => {
+    let material: any
 
-    console.log(renderer.scene.children)
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
 
-    expect(true).toBeTruthy()
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    expect(material instanceof RawShaderMaterial).toBeTruthy()
   })
 })
