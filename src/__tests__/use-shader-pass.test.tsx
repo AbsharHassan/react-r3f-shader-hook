@@ -27,7 +27,7 @@ const fragmentShader = `
 `
 
 describe('Implementing', () => {
-  it("should make sure the hook's return type is RawShaderMaterial", async () => {
+  test("hook's return type should be RawShaderMaterial", async () => {
     let material: any
 
     const Component = () => {
@@ -65,7 +65,7 @@ describe('Implementing', () => {
     expect(material.vertexShader).toBe(vertexShader)
   })
 
-  test.only('material should have the provided FRAGMENT shader', async () => {
+  test('material should have the provided FRAGMENT shader', async () => {
     let material: any
 
     const Component = () => {
@@ -80,6 +80,27 @@ describe('Implementing', () => {
     }
 
     await create(<Component />)
+
+    expect(material.fragmentShader).toBe(fragmentShader)
+  })
+
+  it('material should have the provided FRAGMENT shader', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    console.log(material)
 
     expect(material.fragmentShader).toBe(fragmentShader)
   })
