@@ -84,7 +84,7 @@ describe('Implementing', () => {
     expect(material.fragmentShader).toBe(fragmentShader)
   })
 
-  it('material should have the provided FRAGMENT shader', async () => {
+  test('material should have the necessary uScene uniform', async () => {
     let material: any
 
     const Component = () => {
@@ -100,8 +100,29 @@ describe('Implementing', () => {
 
     await create(<Component />)
 
-    console.log(material)
+    const keyToCheck = 'uScene'
 
-    expect(material.fragmentShader).toBe(fragmentShader)
+    expect(keyToCheck in material.uniforms).toBeTruthy()
+  })
+
+  test('material should have the necessary uResolution uniform', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    const keyToCheck = 'uResolution'
+
+    expect(keyToCheck in material.uniforms).toBeTruthy()
   })
 })
