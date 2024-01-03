@@ -64,29 +64,27 @@ const useShaderPass = ({
     []
   )
 
-  const material = useMemo<RawShaderMaterial>(() => {
-    return new RawShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms: {
-        uScene: { value: target.texture },
-        uResolution: { value: resolution },
-        ...uniforms,
-      },
-    })
-  }, [vertexShader, fragmentShader, uniforms])
+  const material = useMemo<RawShaderMaterial>(
+    () =>
+      new RawShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms: {
+          uScene: { value: target.texture },
+          uResolution: { value: resolution },
+          ...uniforms,
+        },
+      }),
+    [vertexShader, fragmentShader, uniforms]
+  )
 
   const updateRenderTargetSize = (): void => {
-    // Get the new size of the renderer's drawing buffer
     gl.getDrawingBufferSize(resolution)
 
-    // Update the size of the render target
     target.setSize(resolution.x, resolution.y)
 
-    // Update any uniforms or properties that depend on the resolution
     material.uniforms.uResolution.value = resolution
 
-    // Update the camera aspect ratio if needed
     const aspect = resolution.x / resolution.y
     dummyCamera.left = -aspect
     dummyCamera.right = aspect
@@ -97,7 +95,6 @@ const useShaderPass = ({
   useEffect(() => {
     const geometry = new BufferGeometry()
 
-    // Flat triangle expressed in clip space coordinates
     const vertices = new Float32Array([
       -1.0, -1.0, 0.0, 3.0, -1.0, 0.0, -1.0, 3.0, 0.0,
     ])
@@ -128,9 +125,7 @@ const useShaderPass = ({
     window.addEventListener('resize', updateRenderTargetSize)
 
     return () => {
-      material.dispose()
       window.removeEventListener('resize', updateRenderTargetSize)
-      // other clean ups
     }
   }, [])
 
