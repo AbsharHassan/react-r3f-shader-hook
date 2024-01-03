@@ -147,4 +147,32 @@ describe('Implementing', () => {
 
     expect(Object.keys(material.uniforms).length).toBe(2)
   })
+
+  test('uniforms should have the provided uniform', async () => {
+    let material: any
+    const uTest = { value: 1 }
+
+    const Component = () => {
+      material = useShaderPass({
+        vertexShader,
+        fragmentShader,
+        uniforms: { uTest },
+      })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    expect(hasKey(material.uniforms, 'uTest')).toBeTruthy()
+  })
+
+  test.todo(
+    'updating the provided uniform should update it in the material as well'
+  )
 })
