@@ -125,4 +125,23 @@ describe('Implementing', () => {
 
     expect(keyToCheck in material.uniforms).toBeTruthy()
   })
+
+  test('material should ONLY have the above uniforms IF none are provided', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({ vertexShader, fragmentShader })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    await create(<Component />)
+
+    expect(Object.keys(material.uniforms).length).toBe(2)
+  })
 })
