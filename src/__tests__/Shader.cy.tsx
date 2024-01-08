@@ -26,10 +26,10 @@ describe('Implementation of use-shader-pass hook in a component', () => {
       .invoke('attr', 'data-material-value')
       .then((stateString) => {
         const state = JSON.parse(stateString as string)
-        cy.wrap(state.uniforms.uResolution.value).should('deep.equal', [
-          1200 * 1.25,
-          900 * 1.25,
-        ])
+        cy.wrap(state.uniforms.uResolution.value).should(
+          'deep.equal',
+          [1200, 900]
+        )
       })
 
     cy.viewport(800, 600)
@@ -40,10 +40,10 @@ describe('Implementation of use-shader-pass hook in a component', () => {
       .invoke('attr', 'data-material-value')
       .then((stateString) => {
         const state = JSON.parse(stateString as string)
-        cy.wrap(state.uniforms.uResolution.value).should('deep.equal', [
-          800 * 1.25,
-          600 * 1.25,
-        ])
+        cy.wrap(state.uniforms.uResolution.value).should(
+          'deep.equal',
+          [800, 600]
+        )
       })
   })
 })
