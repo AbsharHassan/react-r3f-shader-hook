@@ -42,7 +42,6 @@ const ShaderComponent = ({ handleMaterial }: ShaderComponentProps) => {
   useEffect(() => {
     material.uniforms.uTest.value = true
     handleMaterial(material)
-    console.log(material)
   }, [])
 
   return (
@@ -55,15 +54,22 @@ const ShaderComponent = ({ handleMaterial }: ShaderComponentProps) => {
 
 const DummyShaderComponent = () => {
   const [material, setMaterial] = useState<RawShaderMaterial | null>(null)
+  const [rerender, setRerender] = useState(false)
 
   const handleMaterial = (mat: RawShaderMaterial) => {
     setMaterial(mat)
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setRerender(true)
+    }, 1500)
+  }, [])
+
   return (
-    <>
+    <div style={{ width: '100vw', height: '100vh' }}>
       <Canvas
-        style={{ width: '100%', height: '100vh', backgroundColor: 'black' }}
+        style={{ width: '100%', height: '100%', backgroundColor: 'black' }}
       >
         <ambientLight />
         <ShaderComponent handleMaterial={handleMaterial} />
@@ -73,7 +79,7 @@ const DummyShaderComponent = () => {
         data-material-value={JSON.stringify(material)}
         style={{ display: 'none' }}
       />
-    </>
+    </div>
   )
 }
 
