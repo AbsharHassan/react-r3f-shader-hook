@@ -17,7 +17,7 @@
     "cypress": "cypress run --config video=false --component"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abshar Hassan <abshar.hassan7@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.6",
