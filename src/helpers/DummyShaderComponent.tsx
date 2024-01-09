@@ -54,7 +54,7 @@ const ShaderComponent = ({ handleMaterial }: ShaderComponentProps) => {
 
 const DummyShaderComponent = () => {
   const [material, setMaterial] = useState<RawShaderMaterial | null>(null)
-  const [rerender, setRerender] = useState(false)
+  const [, setRerender] = useState(false)
 
   const handleMaterial = (mat: RawShaderMaterial) => {
     setMaterial(mat)
