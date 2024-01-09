@@ -31,8 +31,11 @@ export default [
         exclude: [
           '**/__tests__/**',
           '**/*.test.ts',
+          '**/*.test.tsx',
           '**/stories/**',
           '**/*stories.ts',
+          '**/cypress/**',
+          '**/*.cy.tsx',
         ],
       }),
       terser(),
