@@ -12,9 +12,9 @@
     "rollup": "rollup -c",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "cypress:run": "cypress run --config video=false --component"
+    "jest": "jest",
+    "jest:watch": "jest --watch",
+    "cypress": "cypress run --config video=false --component"
   },
   "keywords": [],
   "author": "",
