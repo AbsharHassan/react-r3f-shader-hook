@@ -1,5 +1,5 @@
 import React from 'react'
-import DummyShaderComponent from '../helpers/DummyShaderComponent'
+import DummyShaderComponent from '../../src/helpers/DummyShaderComponent'
 
 describe('Implementation of use-shader-pass hook in a component', () => {
   it('updating the provided uniform should update it in the material as well', () => {
