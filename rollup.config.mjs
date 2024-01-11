@@ -36,6 +36,8 @@ export default [
           '**/*stories.ts',
           '**/cypress/**',
           '**/*.cy.tsx',
+          '**/helpers/**',
+          '**/setupTests.ts',
         ],
       }),
       terser(),
