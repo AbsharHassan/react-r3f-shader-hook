@@ -125,4 +125,4 @@ export default App
 
 ### License
 
-This library is MIT Licensed
+This library is [MIT Licensed](LICENSE)
