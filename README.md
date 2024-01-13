@@ -123,6 +123,8 @@ export default App
 
 ### Contributing
 
+Documentation on contributing can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ### License
 
 This library is [MIT Licensed](LICENSE)
