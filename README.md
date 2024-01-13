@@ -54,7 +54,7 @@ Keep in mind you will need the following dependencies installed in your project 
     "@react-three/fiber": "^8.15.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "^0.159.0"
+    "three": ">=0.159.0 <1.0.0"
 }
 ```
 
