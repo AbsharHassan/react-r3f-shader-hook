@@ -7,7 +7,9 @@
 </p>
 
 <div align="center">
-    <img alt="NPM Version" src="https://img.shields.io/npm/v/react-r3f-shader-hook">
+    <a href='https://www.npmjs.com/package/react-r3f-shader-hook'>
+      <img alt="NPM Version" src="https://img.shields.io/npm/v/react-r3f-shader-hook">
+    </a>
     <img alt="Static Badge" src="https://img.shields.io/badge/types-included-darkGreen">
 </div>
 
