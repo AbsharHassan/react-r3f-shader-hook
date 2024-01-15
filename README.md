@@ -31,6 +31,8 @@ Under the hood it works by implementing [postprocessing with a 3 vertix `Quad`](
 
 - ⚡ Although `EffectComposer` offers a variety of complex custom solutions, this provides a quick and dirty way to enahance your scene
 
+- 📐 Automatically handles resizing, offering an advantage over using Three.js out-of-the-box, where you would need to worry about handling responsiveness.
+
 ### Documentation
 
 The hook accepts any parameters that the `RawShaderMaterial` from [three.js](https://threejs.org/docs/#api/en/materials/RawShaderMaterial) accepts. The three you will most commonly deal with are the following:
