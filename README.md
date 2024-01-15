@@ -21,15 +21,15 @@ Under the hood it works by implementing [postprocessing with a 3 vertix `Quad`](
 
 ### Advantages
 
-- 🚀 More performant since it utilizes a quad with 3 vertices instead of 4
+- 🚀 More performant than the `EffectComposer` since it utilizes a quad with just 3 vertices instead of 4
 
 - 📦 Works out of the box. No need to import other components
 
 - 🎈 Lightweight. Perfect for projects where using `EffectComposer` may be overkill
 
-- 💡 More intuitive and simpler to use
+- 💡Intuitive and simple to use
 
-- ⚡ Although `EffectComposer` offers a variety of complex custom solutions, this provides a quick and dirty way to enahance your scene
+- ⚡ Faster. Although `EffectComposer` offers a variety of complex custom solutions, this provides a quick and dirty way to enahance your scene
 
 - 📐 Automatically handles resizing, offering an advantage over using Three.js out-of-the-box, where you would need to worry about handling responsiveness.
 
