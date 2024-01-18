@@ -35,6 +35,7 @@ const useShaderPass = ({
     }
   `,
   uniforms,
+  antialias,
 }: UseShaderPassParameters): RawShaderMaterial => {
   const { gl, scene, camera, viewport } = useThree()
 
@@ -66,14 +67,21 @@ const useShaderPass = ({
   )
 
   const material = useMemo<RawShaderMaterial>(() => {
-    const fxaaFragmentShader = `${applyFXAA} ${fragmentShader}`.replace(
-      'texture2D(uScene, uv)',
-      'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
-    )
+    let fragShader: string
+
+    if (antialias) {
+      const fxaaFragShader = `${applyFXAA} ${fragmentShader}`.replace(
+        'texture2D(uScene, uv)',
+        'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
+      )
+      fragShader = fxaaFragShader
+    } else {
+      fragShader = fragmentShader
+    }
 
     return new RawShaderMaterial({
       vertexShader,
-      fragmentShader: fxaaFragmentShader,
+      fragmentShader: fragShader,
       uniforms: {
         uScene: { value: target.texture },
         uResolution: { value: resolution },
