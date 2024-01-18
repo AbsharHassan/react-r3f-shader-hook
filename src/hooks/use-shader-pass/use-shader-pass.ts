@@ -14,6 +14,7 @@ import {
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { RequiredShaderMaterialParameters } from './use-shader-pass.types'
+import applyFXAA from '../../helpers/FXAA/applyFXAA'
 
 const useShaderPass = ({
   vertexShader = `
@@ -64,19 +65,22 @@ const useShaderPass = ({
     []
   )
 
-  const material = useMemo<RawShaderMaterial>(
-    () =>
-      new RawShaderMaterial({
-        vertexShader,
-        fragmentShader,
-        uniforms: {
-          uScene: { value: target.texture },
-          uResolution: { value: resolution },
-          ...uniforms,
-        },
-      }),
-    [vertexShader, fragmentShader, uniforms]
-  )
+  const material = useMemo<RawShaderMaterial>(() => {
+    const fxaaFragmentShader = `${applyFXAA} ${fragmentShader}`.replace(
+      'texture2D(uScene, uv)',
+      'apply(uScene, gl_FragCoord.xy, uResolution)'
+    )
+
+    return new RawShaderMaterial({
+      vertexShader,
+      fragmentShader: fxaaFragmentShader,
+      uniforms: {
+        uScene: { value: target.texture },
+        uResolution: { value: resolution },
+        ...uniforms,
+      },
+    })
+  }, [vertexShader, fragmentShader, uniforms])
 
   const updateRenderTargetSize = (): void => {
     gl.getDrawingBufferSize(resolution)
