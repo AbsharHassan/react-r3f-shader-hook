@@ -13,7 +13,7 @@ import {
   FloatType,
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { RequiredShaderMaterialParameters } from './use-shader-pass.types'
+import { UseShaderPassParameters } from './use-shader-pass.types'
 import applyFXAA from '../../helpers/FXAA/applyFXAA'
 
 const useShaderPass = ({
@@ -35,7 +35,7 @@ const useShaderPass = ({
     }
   `,
   uniforms,
-}: RequiredShaderMaterialParameters): RawShaderMaterial => {
+}: UseShaderPassParameters): RawShaderMaterial => {
   const { gl, scene, camera, viewport } = useThree()
 
   //TODO: name this more appropriately
