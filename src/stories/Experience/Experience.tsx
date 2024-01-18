@@ -3,7 +3,11 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Scene from './Scene'
 
-const Experience = () => {
+type ExperienceProps = {
+  antialias?: boolean
+}
+
+const Experience = ({ antialias }: ExperienceProps) => {
   return (
     <Canvas
       shadows
@@ -16,7 +20,7 @@ const Experience = () => {
         maxPolarAngle={Math.PI / 2}
       />
       <ambientLight intensity={0.015} />
-      <Scene />
+      <Scene antialias={antialias} />
     </Canvas>
   )
 }

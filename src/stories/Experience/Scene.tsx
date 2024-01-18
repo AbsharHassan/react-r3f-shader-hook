@@ -4,7 +4,11 @@ import VolumetricSpotLight from './VolumetricSpotLight'
 import { useShaderPass } from '../../hooks'
 import { useFrame } from '@react-three/fiber'
 
-const Scene = () => {
+type SceneProps = {
+  antialias?: boolean
+}
+
+const Scene = ({ antialias }: SceneProps) => {
   const vertexShader = `
     precision highp float;
 
@@ -35,6 +39,7 @@ const Scene = () => {
     vertexShader,
     fragmentShader,
     uniforms,
+    antialias,
   })
 
   useFrame((state) => {
