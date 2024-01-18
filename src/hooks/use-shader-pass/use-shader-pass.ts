@@ -68,7 +68,7 @@ const useShaderPass = ({
   const material = useMemo<RawShaderMaterial>(() => {
     const fxaaFragmentShader = `${applyFXAA} ${fragmentShader}`.replace(
       'texture2D(uScene, uv)',
-      'apply(uScene, gl_FragCoord.xy, uResolution)'
+      'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
     )
 
     return new RawShaderMaterial({

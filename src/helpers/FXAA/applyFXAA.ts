@@ -1,4 +1,4 @@
-// code sourced from https://github.com/mattdesl/glsl-fxaa/blob/master/index.glsl
+// code adapted from https://github.com/mattdesl/glsl-fxaa/blob/master/index.glsl
 
 import fxaa from './fxaa'
 import texcoord from './texcoords'
@@ -6,7 +6,7 @@ import texcoord from './texcoords'
 const applyFXAA = `
 ${texcoord}
 ${fxaa}
-vec4 apply(sampler2D tex, vec2 fragCoord, vec2 resolution) {
+vec4 applyFXAA(sampler2D tex, vec2 fragCoord, vec2 resolution) {
 	mediump vec2 v_rgbNW;
 	mediump vec2 v_rgbNE;
 	mediump vec2 v_rgbSW;
