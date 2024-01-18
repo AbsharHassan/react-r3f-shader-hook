@@ -70,11 +70,16 @@ const useShaderPass = ({
     let fragShader: string
 
     if (antialias) {
-      const fxaaFragShader = `${applyFXAA} ${fragmentShader}`.replace(
-        'texture2D(uScene, uv)',
-        'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
-      )
-      fragShader = fxaaFragShader
+      if (fragmentShader.includes('texture2D(uScene, uv)')) {
+        const fxaaFragShader = `${applyFXAA} ${fragmentShader}`.replace(
+          'texture2D(uScene, uv)',
+          'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
+        )
+        fragShader = fxaaFragShader
+      } else
+        throw new Error(
+          "When using antialias, the fragment shader MUST use the pattern 'texture2D(uScene, uv)' when converting the texture to a color."
+        )
     } else {
       fragShader = fragmentShader
     }
