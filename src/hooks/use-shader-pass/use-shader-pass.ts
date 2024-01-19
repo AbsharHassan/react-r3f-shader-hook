@@ -14,7 +14,7 @@ import {
 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { UseShaderPassParameters } from './use-shader-pass.types'
-import applyFXAA from '../../helpers/FXAA/applyFXAA'
+import applyFXAA from '../../FXAA/applyFXAA'
 
 const useShaderPass = ({
   vertexShader = `
