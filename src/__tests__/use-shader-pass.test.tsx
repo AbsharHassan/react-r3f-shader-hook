@@ -63,7 +63,7 @@ describe('Implementing', () => {
     expect(material.vertexShader).toBe(vertexShader)
   })
 
-  test('material should have the provided FRAGMENT shader', () => {
+  test('material should have the correct FRAGMENT shader if antialias is not enabled', () => {
     expect(material.fragmentShader).toBe(fragmentShader)
   })
 
@@ -97,5 +97,70 @@ describe('Implementing', () => {
     }
     await create(<Component />)
     expect(hasKey(material.uniforms, 'uTest')).toBeTruthy()
+  })
+
+  test('shader modified correctly if antialias enabled', async () => {
+    let material: any
+
+    const Component = () => {
+      material = useShaderPass({
+        vertexShader,
+        fragmentShader,
+        antialias: true,
+      })
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+    await create(<Component />)
+
+    expect(
+      (material.fragmentShader as string).includes(
+        'applyFXAA(uScene, gl_FragCoord.xy, uResolution)'
+      )
+    ).toBeTruthy()
+  })
+
+  test('error is thrown if antialias is enabled but fragment shader is incorrect', async () => {
+    const incorrectlyFormattedFragmentShader = `
+      precision highp float;
+    
+      uniform sampler2D uScene;
+      uniform vec2 uResolution;
+    
+      void main() {
+        vec2 uv = gl_FragCoord.xy / uResolution.xy;
+        vec2 uV = uv;
+        vec4 color = texture2D(uScene, uV).rgba;
+        gl_FragColor = color;
+      }
+    `
+    const Component = () => {
+      useShaderPass({
+        vertexShader,
+        fragmentShader: incorrectlyFormattedFragmentShader,
+        antialias: true,
+      })
+
+      return (
+        <mesh>
+          <boxGeometry args={[2, 2]} />
+          <meshBasicMaterial />
+        </mesh>
+      )
+    }
+
+    try {
+      await create(<Component />)
+      // force the test to fail incase error not thrown
+      expect(false).toBeTruthy()
+    } catch (error) {
+      expect((error as Error).message).toBe(
+        "If antialias is enabled, the fragment shader MUST use the pattern 'texture2D(uScene, uv)' when converting the texture to a color."
+      )
+    }
   })
 })
